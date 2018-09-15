@@ -5,7 +5,9 @@ services:
     ports:
       - "8081:80"
     configs:
-      - nginx_config
+      - nginx-config
+        target: /etc/nginx/conf.d/http.conf
+        mode: 0440
     deploy:
       replicas: 3
       restart_policy:
@@ -28,5 +30,5 @@ networks:
   stack-net:
 
 configs:
-  nginx_config:
+  nginx-config:
     external: true
