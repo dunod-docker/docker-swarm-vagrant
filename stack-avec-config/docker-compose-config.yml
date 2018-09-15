@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  web:
+    image: nginx
+    ports:
+      - "8081:80"
+    configs:
+      - nginx_config
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - php-fpm
+    networks:
+      - stack-net
+  
+  php-fpm:
+    image: bitnami/php-fpm
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - stack-net
+  
+networks:
+  stack-net:
+
+configs:
+  nginx_config:
+    external: true
