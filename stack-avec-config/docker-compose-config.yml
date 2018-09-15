@@ -5,7 +5,7 @@ services:
     ports:
       - "8081:80"
     configs:
-      - nginx-config
+      - source: nginx-config
         target: /etc/nginx/conf.d/http.conf
         mode: 0440
     deploy:
