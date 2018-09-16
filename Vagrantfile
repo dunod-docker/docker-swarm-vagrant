@@ -10,11 +10,11 @@ Vagrant.configure(2) do |config|
 
 config.vm.define "swarm-master" do |d|
     d.vm.box = "dunod-docker/centos7"
-    d.vm.hostname = "swarm-manager"
+    d.vm.hostname = "swarm-master"
     d.vm.network "private_network", ip: "10.100.192.200"
     d.vm.provision :shell, path: "scripts/docker_installation.sh"
     d.vm.provider "virtualbox" do |v|
-    v.name = "swarm-manager"
+    v.name = "swarm-master"
     v.memory = 1024
     end
 end
